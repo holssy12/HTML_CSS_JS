@@ -1,0 +1,95 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <div id="outside">   <!-- 0번째 div -->
+        
+            <!-- event delegation에서, div로 굳이 나누지 않아도, input id를 설정해서 구분이 가능하다.-->
+
+            <div>   <!-- 1번째 div -->
+                <input type="checkbox" id="i1">
+                <label for="">운동</label>
+                <input type="checkbox" id="i2">
+                <label for="">식사</label>
+            </div>
+            <div>   <!-- 2번째 div -->
+                <input type="checkbox" id="i3">
+                <label for="">쇼핑</label>
+                <input type="checkbox" id="i4">
+                <label for="">수면</label>
+            </div>
+        
+        </div>
+        <script>
+
+            // // Array 형태로 모든 input이 들어간다.
+            // const inputs = document.querySelectorAll('input');
+            // inputs.forEach( (_ip, _idx)=> {
+            //     _ip.addEventListener('click', (event)=>{
+            //         console.log(_idx + ' bubble phase: input click event 발생');
+            //         // event.stopPropagation();    // 같은 레벨에 event들은 수행 후, propagation을 멈춘다.
+            //         event.stopImmediatePropagation();   // '해당 event' 까지만 수행 후, propagation을 멈춘다.
+            //     }); // bubble phase에 수행되는 listener
+            //         // defualt : false ---> buuble phase에 수행
+
+            //     // capture phase에 수행되는 listener
+            //     _ip.addEventListener('click', ()=>{
+            //         console.log(_idx + ' capture phase: input click event 발생');
+            //     }, true); // trtue ---> capture phase에 수행
+
+            // });
+            // // 하나의 event에 대해서 여러 개의 Listener를 걸을 수 있고,
+            // // 순차적으로 실행된다.
+            // inputs.forEach( (_ip, _idx)=> {
+            //     _ip.addEventListener('click', ()=>{
+            //         console.log(_idx + ' 두 번째 bubble phase: input click event 발생');
+            //     }); // bubble phase에 수행되는 listener
+            // });
+
+            // // div에 대한 Event Listener 설정
+            // const divs = document.querySelectorAll('div');
+            // divs.forEach( (_dv, _idx) => {
+            //     _dv.addEventListener('click', ()=> {
+            //         console.log(_idx + ' bubble phase: div에 대한 event 발생');
+            //     });
+
+            //     _dv.addEventListener('click', ()=> {
+            //         console.log(_idx + ' capture phase: div에 대한 event 발생');
+            //     }, true);
+
+            // });
+
+
+            // event delegation, 이벤트 위임
+            // 가장 높은 레벨의 division이 아래 div들의 event를 위임받아, 한꺼번에 처리한다.
+
+            const cp_div = document.querySelector('#outside');
+            cp_div.addEventListener('click', (event)=>{
+                // // event.target.tagName : 실제 Event 발생 지점.
+                // // Parent에 EventListener를 걸어도, child에서 나오는 모든 event를 잡아서 볼 수 있다.
+                // console.log('cp_div 이벤트: ---> ', event.target.tagName);
+
+                // 아래는 input을 처리할 때 발생하는 event.
+                if(event.target.id === 'i1') {
+                    console.log('운동');
+                }
+                else if(event.target.id === 'i2') {
+                    console.log('식사');
+                }
+                else if(event.target.id === 'i3') {
+                    console.log('쇼핑');
+                }
+                else if(event.target.id === 'i4') {
+                    console.log('수면');
+                }
+            });
+
+            // 아래는 div를 처리할 때 발생하는 event.
+            cp_div.addEventListener('click', (event)=>{
+                console.log('div event 처리');
+            });
+
+        </script>
+    </body>
+</html>

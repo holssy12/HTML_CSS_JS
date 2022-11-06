@@ -1,0 +1,181 @@
+<html>
+    <head>
+        <style>
+            button {
+                width: 50px;
+                height: 50px;
+                margin: 5px;
+            }
+            #operator {
+                width: 50px;
+                height: 50px;
+                margin: 5px;
+                text-align: center;
+            }
+            #result {
+                width: 180px;
+                height: 50px;
+                margin: 5px;
+                text-align: right;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div>
+            <!-- read only -->
+            <input readonly id="operator">
+            <input readonly type="number" id="result">
+        </div>
+
+        <div>
+            <button id="n7">7</button>
+            <button id="n8">8</button>
+            <button id="n9">9</button>
+            <button id="op_plus">+</button>
+        </div>
+
+        <div>
+            <button id="n4">4</button>
+            <button id="n5">5</button>
+            <button id="n6">6</button>
+            <button id="op_sub">-</button>
+        </div>
+
+        <div>
+            <button id="n1">1</button>
+            <button id="n2">2</button>
+            <button id="n3">3</button>
+            <button id="op_mul">*</button>
+        </div>
+
+        <div>
+            <button id="op_clr">Clear</button>
+            <button id="n0">0</button>
+            <button id="op_calc">=</button>
+            <button id="op_div">/</button>
+        </div>
+
+        <script>
+
+            let numFirst = '';      // 계산입력 첫 번째 숫자
+            let numSecond = '';     // 계산입력 두 번째 숫자
+            let op_input = null;
+            
+            const cp_input_num = document.querySelector('#result');
+            const cp_input_op = document.querySelector('#operator');
+
+            // // JavaScript의 function 특징 : 1. argumet로 function을 받을 수 있다.
+            // //                              2. return값으로 function을 줄 수 있다.
+            // //                               -----> functional programming
+            
+            // // higher order function : 고차원 함수. 함수를 argument 혹은 return 값으로 이용하는 함수.
+            // function funcA (k) {
+            //     return () => { console.log('hello'); }  // 함수 반환
+            // }
+            
+            // function funcB (k, funcK) {
+            //     funck(k);
+            // }
+
+            // funcB(3, (v)=>{console.log(v+'를 입력하셨습니다.');});
+
+
+            // higher-order function
+            const numFunc = (n) => {    // n --- '0', '1', '2', ..., '9'
+                // 함수를 만들어서 return한다!! 진정한 higher-order function
+                return ()=>{
+                    if (op_input === null)  { 
+                        numFirst = numFirst + n;        // closure : n은 이 함수 안에는 없다.
+                        cp_input_num.value = numFirst;  //   ---> return 되는 함수가 변수를 받아올 수 있는 범위!
+                    }
+                    // operator 입력된 후인 경우
+                    else {
+                        numSecond = numSecond + n;
+                        cp_input_num.value = numSecond;   
+                    }
+                 };
+            }
+
+            // higher-order function
+            // numFirst op numSecond
+            // 1. op_input
+            // 2. 기호 표시
+            // const opFunc = (op) => {
+            //     return ()=>{};
+            // };
+
+            // **위의 것과 동일한 역할을 수행
+            const opFunc = (op) => () => {
+                switch (op) {
+                    case '+':
+                    case '-':
+                    case '*':
+                    case '/':
+                        op_input = op;
+                        cp_input_op.value = op_input;
+                        break;
+                    case '=':
+                        switch(op_input) {
+                            case '+':
+                                cp_input_num.value = parseInt(numFirst) + parseInt(numSecond);
+                                break;
+                            case '-':
+                                cp_input_num.value = parseInt(numFirst) - parseInt(numSecond);
+                                break;
+                            case '*':
+                                cp_input_num.value = parseInt(numFirst) * parseInt(numSecond);
+                                break;
+                            case '/':
+                                cp_input_num.value = parseInt(numFirst) / parseInt(numSecond);
+                                break;
+                        }
+                        break;
+                    case 'clear':
+                        numFirst = '';
+                        numSecond = '';
+                        op_input = null;
+                        cp_input_num.value = '';
+                        cp_input_op.value = '';
+                        break;
+                }
+            };
+
+            // addEventListener 함수는 아래에서 argument로 function을 받는다. ---> higher-order function
+            // 즉, numFunc의 return값이 함수여야 한다!
+            document.querySelector('#n0').addEventListener('click', numFunc('0') );
+            document.querySelector('#n1').addEventListener('click', numFunc('1') );
+            document.querySelector('#n2').addEventListener('click', numFunc('2') );
+            document.querySelector('#n3').addEventListener('click', numFunc('3') );
+            document.querySelector('#n4').addEventListener('click', numFunc('4') );
+            document.querySelector('#n5').addEventListener('click', numFunc('5') );
+            document.querySelector('#n6').addEventListener('click', numFunc('6') );
+            document.querySelector('#n7').addEventListener('click', numFunc('7') );
+            document.querySelector('#n8').addEventListener('click', numFunc('8') );
+            document.querySelector('#n9').addEventListener('click', numFunc('9') );
+
+            document.querySelector('#op_plus').addEventListener('click', opFunc('+') );
+            document.querySelector('#op_sub').addEventListener('click', opFunc('-') );
+            document.querySelector('#op_mul').addEventListener('click', opFunc('*') );
+            document.querySelector('#op_div').addEventListener('click', opFunc('/') );
+            document.querySelector('#op_calc').addEventListener('click', opFunc('=') );
+            document.querySelector('#op_clr').addEventListener('click', opFunc('clear') );
+
+            // 문자열을 받고, parseInt를 이용해 숫자로 바꾸면 편하다.
+
+            // 아래는 모두 동일한 함수
+            const sumK = (a) => {
+                return (b)=>{
+                    return a + b;   // closure로 인해 a를 쓸 수 있다.
+                }
+            };
+            const sumK_2 = (a) => (b) => { return a + b };
+            const sumK_3 = (a) => (b) => { a + b };
+            const sumK_4 = (a) => (b) => (a + b );
+
+            sumK(3)(4); // 4 ---> b 자리!!
+
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,26 @@
+
+/* . : class를 나타냄.
+div.divclass {
+    background-color: darkorange;
+}
+*/
+
+/* 
+CSS 에서는 이렇게 주석 처리한다.
+# : id를 나타냄.
+*/
+div#first {
+    background-color: aqua;
+    display: inline-block; /* 개발자 도구로 볼 때, div가 모든 블럭을 차지하지 않게 바꿔준다. */
+    width: 500px; /* 픽셀 단위는 숫자와 붙여서 쓴다. */
+}
+div#second {
+    background-color: indianred;
+    display: inline-block;
+    width: 600px;
+}
+div#third{
+    background-color: olive;
+    display: inline-block;
+    width: 700px;
+}

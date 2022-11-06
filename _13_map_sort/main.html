@@ -1,0 +1,131 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+
+        <div>
+            <h1 id="count_down"></h1>
+        </div>
+
+        <script>
+            // // 배열
+            // // 1. fill ---> 채운다.
+            // const a = Array(10).fill(0);
+            // // console.log(a);
+            // // a.fill(10);
+            // // console.log(a);
+
+            // // 2. map ---> 배열의 요소를 일정한 규칙에 따라 바꿔준다.
+            // //  [0, 0, 0, ..., 0] ---> [1, 2, 3, 4, ..., 10]
+            // const b = a.map( ( _elem, _idx ) => { return _idx + 1 } )
+            // console.log('a is ' + a); // 원본 배열인 a는 불변.
+            // console.log('b is ' + b);
+
+            // // 3. sort
+            // // argument로 받는 함수는 인자를 2개를 받고, 관계를 채워주어야 한다!
+            // const c = [45, 33, 22 ,11 ,7 ,99];
+            // console.log('c is ' + c);
+
+            // c.sort( (a, b) => {
+            //     if (a < b) return -1;       // negative
+            //     else if (a > b) return 1;   // positive ---> 앞의 요소가 더 크다고 판단. 오름차순으로 바꾼다.
+            //     else return 0;              // zero
+            // } )
+
+            // // sort는 원본 배열인 c 자체를 바꿔버린다.
+            // console.log('after sorting, c is ' + c);
+
+            // 4. 복사본 만들어서 sort ---> slice()
+            // slice(start_idx, end_idx) : start_idx부터 *end_idx 전*까지 잘라낸다.
+            //                                            ---> end_idx : not included
+            //      ---> splice와의 차이점을 주의하자.
+            // [1, 2, 3]
+            // slice(1) ---> [2, 3]
+            // slice(0,1) -> [1]
+            // Tip) 개발자 도구 console창에서 바로 JavaScript 코드 입력이 가능하다...
+            // slice() ---> 전체 복사
+
+            // const sc = c.slice().sort( (a, b) => {
+            //     if (a < b) return -1;       // negative
+            //     else if (a > b) return 1;   // positive ---> 앞의 요소가 더 크다고 판단. 오름차순으로 바꾼다.
+            //     else return 0;              // zero
+            // } )
+
+            // // a - b : a가 클 때, return positive ---> 오름차순
+            // // b - a : b가 클 때, return positive ---> 내림차순
+            // const sc = c.slice().sort ( (a,b) => b-a )
+
+            // console.log('after sorting, c is ' + c);
+            // console.log('sc is ' + sc);
+
+            // // 5. 문자열 정렬
+            // // const d = ['banana', 'apple', 'orange'];
+            // // const d2 = ['호박', '수박', '사과', '포도'];
+            // const d3 = ['banana', 'apple', 'orange', '호박', '수박', '사과', '포도']
+            // const d4 = ['abc', 'Abc', '포도', 'zac', 'Zac'];
+
+            // // const sd = d.slice().sort((a,b)=>{ 
+            // //     if (a < b) return -1;
+            // //     else if (a > b) return 11;
+            // //     else return 0;
+            // //  });
+
+            // // 앞의 식이 false 이면 다음 식으로 넘어가는 방식. 위에 쓴 것과 동일.
+            // // 주의) arrow function에서 {}를 쓰면, return을 붙여아 한다.
+            // // const sd = d3.slice().sort((a,b)=>(a < b) ? -1 : (a > b) ? 1 : 0)
+
+            // // // 위에 쓴 것과 동일.
+            // // const sd = d3.slice().sort((a,b) => a.localeCompare(b));
+
+            // // 6. localeCompare
+            // // locale : 지역
+            // // 지역에 따라 나뉘는 비슷하게 생긴 알파벳을 구별하기 쉽게 해준다.
+            // // 대소문자 구별 여부를 지정할 수 있다. {'key', 'value'}
+            // // Browser에 설정된 지역의 언어가 우선순위가 있다. ( 내 Chrome에서는 한글 먼저 나온다. )
+
+            // const sd1 = d4.slice().sort((a,b)=>(a < b) ? -1 : (a > b) ? 1 : 0)
+            // const sd2 = d4.slice().sort((a,b) => a.localeCompare(b , {'sensitivity':'base'}));
+
+            // // console.log('d is: ' + d3);
+            // // console.log('sd is: ' + sd);
+
+            // console.log('d4 is: ' + d4);
+            // console.log('sd is: ' + sd1);
+            // console.log('sd is: ' + sd2);
+
+            // // setTimeout : 일정 시간 후에 실행. 1번만 실행 되고 종료.
+
+            // const hello = ()=>{console.log('안녕')}
+
+            // // setTimeout(hello, 3000) // 단위 ---> ms, 1/1000초 후에 실행.
+            // // 주의) argument로 'hello()' 형태로 주게 되면, 함수가 호출된다.
+            // //       즉, hello 함수의 return값이 argument가 되어 오류가 생긴다.
+            // //       현재 hello 함수는 return 값이 없기 때문에 undefined가 들어간다.
+            // // setTimeout(()=>{console.log('화살함수, 안녕')}, 3000);
+
+            // // setInterval : 일정 주기로 실행
+            // // clearInterval : 주기 함수를 종료
+            // // _id = setInterval() ( setInterval 함수는 return값이 존재한다. )
+            // // clearInterval(_id)  ( 받은 _id를 이용해 종료시킨다. )
+            
+            // const _id = setInterval(hello, 1000);
+            // setTimeout(()=>{
+            //     clearInterval(_id);
+            //     console.log('clearInterval 호출되었음.');
+            // }, 5000);
+
+            let timer = 10;
+            const _id = setInterval(()=>{
+                const cp_h1 = document.querySelector('#count_down')
+                cp_h1.textContent = timer;
+                timer--;
+                if (timer < 0) {
+                    clearInterval(_id);
+                    cp_h1.textContent = 'Done'
+                } 
+            }, 1000)
+
+        </script>
+    </body>
+</html>

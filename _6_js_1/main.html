@@ -1,0 +1,80 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1 id="h1_1">여기입니다.</h1>
+        <h1 id="h1_2">여기일까?</h1>
+        <h1 id="h1_3">여긴가?</h1>
+
+        <!-- 크롬 브라우저는 JavScript Interpereter가 있다.-->
+        <script>
+            // 1. 출력 ---> Chrome ---> 개발자도구 ---> Console
+            // Tip ) Ctrl + / : 주석 처리. Toggle로 동작.
+            // console.log("이것은 자바스크립트 입니다."); // JavaScript의 문자열. ;이 없어도 가능하기는 하다.
+            // console.log('이것은 자바스크립트 입니다.'); // 작은 따옴표로도 가능하다. 줄바꿈은 \n으로 쓴다.
+            // console.log(`이것은 자바스크립트 입니다. 
+            
+            // by backtick`); // back-tick, ` 키로도 가능하다. back-tick으로는 입력한 그대로 개발자 도구에서 출력된다.
+
+            // 2. typeof ---> 자료형 이름
+            // + : string을 연결해서 붙이는 연산자. string concatenation operator
+            // console.log('hello의 자료형은 ' + typeof("hello")); // string
+            // console.log('4의 자료형은 ' + typeof(4));   // number
+            // console.log("3.14의 자료형은 " + typeof(3.14)); // number ( 정수, 실수형을 구분하지 않는다. )
+            
+            // console.log('123'+5); // 문자열과 숫자 끼리의 연산이지만, 
+                                  // '123'과 '5' 모두 문자열인 것으로 처리한다. ( 추천하는 방법은 X )
+
+            
+            // '123' + 5 ---> 123 + 5 ---> 128
+            // 문자열을 숫자로 바꿔주는 함수.. parseInt (문자열) ---> 정수
+            console.log('parseInt_1의 결과는 : ' + parseInt('123') + 5);
+            console.log('parseInt_2의 결과는 : ' + (parseInt('123') + 5) ); // 괄호를 이용해, 원하는 결과가 나오도록 한다.
+
+            // 변수, variable
+            // const : 한 번 대입하면, 변경불가.
+            // let   : 일반 변수
+            // const a = 1;
+            // a = 2; // 개발자 도구에서 error message 확인 가능.
+
+            let b = 1;
+            console.log('b의 초기값 : ' + b );
+            b=2;
+            console.log('b의 변경값 : ' + b );
+
+            // JavaScript의 기본 연산
+            // let a = 10;
+            // let _b = 20;
+            // let c = a + b;
+            // const d = a * 10;
+            // const e = 2 ** 3; // 2의 3승 ( 2^3 )
+
+
+            // 동적 프로그래밍 맛보기
+            // const userMsg = prompt(); // prompt : 사용자 입력 함수.
+            // console.log('사용자가 입력한 메시지는 ' + userMsg); // 콘솔창에 입력된 메시지가 출력된다. debugging 용도
+            // document.querySelector('h1#h1_2').textContent = userMsg; // document에서 querySelector로 h1 tag를 찾고,
+            //                                                    // 그 중에서도 textContent 부분에 userMsg를 대입한다.
+            //                                                    // #을 통해 id를 지정.
+            
+            // const allh1 = document.querySelectorAll('h1');
+            // allh1.forEach( (elem, index) => { elem.textContent = userMsg; } );
+
+            const userMsg = prompt();
+            const userNumber = parseInt(userMsg); // 사용자 입력 문자열 ---> 정수
+            const result = userNumber % 2;
+
+            let msg = ""; // 일반 변수 : 동작 중 값 변경 가능.
+            if (result == 1) { // 홀수
+                msg = userMsg + "는 홀수입니다."
+            }
+            else { // 짝수
+                msg = userMsg + "는 짝수입니다."
+            }
+
+            document.querySelector('h1#h1_1').textContent = msg;
+
+        </script>
+    </body>
+</html>

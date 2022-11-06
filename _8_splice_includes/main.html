@@ -1,0 +1,116 @@
+<html>
+    <head>
+    </head>
+
+    <body>
+        
+        <h1 id='grade'>
+        </h1>
+        
+        <script>
+
+            const myArray = [1, 2, 'apple', 'banana', 3.14, true, false, 2];
+
+            // 삭제
+            // myArray.splice(1, 1); // (index, index부터 삭제할 개수)
+            // myArray.splice(1, 2);
+            // myArray.splice(1); // index만 주면, index부터 마지막까지 모두 삭제
+
+            // 삭제 후 추가
+            // myArray.splice(0, 1, 'orange', 'melon'); // 삭제 후, 뒤에 인자로 준 요소들을 모두 추가
+
+            // 단순 추가
+            // myArray.splice(1, 0, 'orange', 'melon');
+
+            // unshift
+            // myArray.splice(0, 0, 'orange');
+            // myArray.unshift('orange');
+
+            // push
+            // myArray.splice(myArray.length, 0, 'orange');
+            // myArray.push('orange');
+
+            // console.log(myArray);
+
+//  ---------------------------------------------------------------------------------------------------------
+
+            // include : Array 안에 해당 요소가 있는지 확인 ---> true / false
+            // console.log("apple이 있는가? : " + myArray.includes('apple'));
+            // console.log("orange가 있는가? : " + myArray.includes('orange'));
+            // if (myArray.includes('apple' === true)) {
+            //     console.log('apple 있음.');
+            // }
+            // else {
+            //     console.log('apple 없음.');
+            // }
+
+            // indexOf : 있으면 해당 index, 없으면 -1
+            // console.log('apple이 있는가? : ' + myArray.indexOf('apple'));   // 2
+            // console.log('orange가 있는가? : ' + myArray.indexOf('orange')); // -1
+
+            // indexOf('apple', fromIndex) : fromIndex부터 뒤로가며 찾는다. ( Array의 index는 불변. )
+            // console.log('apple이 있는가? : ' + myArray.indexOf('apple', 0)); // 2
+            // console.log('apple이 있는가? : ' + myArray.indexOf('apple', 3)); // -1 ---> apple을 이미 지나쳤다.
+            // console.log('apple이 있는가? : ' + myArray.indexOf('apple', 2)); // 2
+
+            // lastIndexOf('apple', fromIndex) : 중복된 apple 중에서도, 마지막(최신의) apple을 찾는다.
+            //                                   주의) fromIndex부터 '앞'으로 돌아가며 찾는다.
+            //                                   Array의 index는 불변.
+            const myArray_2 = [1, 2, 'apple', 'banana', 3.14, 'apple', true, false, 2, 'apple'];
+            // console.log('apple이 있는가? : ' + myArray_2.lastIndexOf('apple'));     // 9
+            // console.log('apple이 있는가? : ' + myArray_2.lastIndexOf('apple', 8));  // 5
+            // console.log('apple이 있는가? : ' + myArray_2.lastIndexOf('apple', 1));  // -1
+
+//  ---------------------------------------------------------------------------------------------------------
+            // 1. 배열에 포함된 모든 사과를 제거하시오.
+            // 2. 배열에 포함된 사과는 몇 개?
+            
+            // My solving
+            // let cntApple = 0;
+            // console.log('before: ' + myArray_2);  // , 말고 + 를 붙여주면 Array의 요소가 일렬로 나온다.
+            // while(myArray_2.includes('apple') === true) {
+            //     myArray_2.splice(myArray_2.indexOf('apple'),1);
+            //     cntApple++;
+            // }
+            // console.log('after: '+ myArray_2);
+            // console.log('the number of apples: ' + cntApple);
+
+            // Solution of the 1st Quiz
+            // console.log('With apple: ' + myArray_2);
+
+            // while (true) {
+
+            //     let _idx = myArray_2.indexOf('apple');
+            //     // 탈출조건부터!
+            //     if (_idx < 0) break;
+
+            //     // 찾은 apple 지우기
+            //     myArray_2.splice(_idx, 1);
+            // }
+
+            // console.log('Without apple: ' + myArray_2);
+
+            // Solution of the 2nd Quiz
+            
+            // ---> the 1st Way
+            // let cnt = 0; // apple 개수
+            // let _idx = 0;
+            // while (true) {
+            //     _idx = myArray_2.indexOf('apple', _idx); // ***index를 계속 업데이트 해준다!!
+            //     if (_idx < 0) break;
+            //     cnt++;
+            //     // 중요!!
+            //     _idx++; // 다음 사과를 찾는 것은, 마지막 찾은 위치 다음.
+            // }
+            // console.log('사과 개수는: ' + cnt);
+
+            // ---> the 2nd way
+            // let cnt = 0;
+            // for (let i = 0; i < myArray_2.length; i++) {
+            //     if (myArray_2[i] === 'apple') cnt++;
+            // }
+            // console.log('사과 개수는: ' + cnt);
+
+        </script>
+    </body>
+</html>

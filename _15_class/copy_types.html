@@ -1,0 +1,123 @@
+<!-- 
+Copy (복사)
+
+1. Shallow Copy
+2. Deep Copy
+
+Reference (참조) 
+-->
+
+<html>
+    <head>
+    </head>
+    <body>
+        <script>
+            // /*
+            //     Primitive data type : 원시적인 데이터 타입. 데이터를 공유하지 않고, 복사해서 저장한다.
+    
+            // */ 
+            // let a = 1;
+            // let b = a;  // b도 자기 공간에 1을 가진다.
+            // b = 10;     // b 자신의 공간의 데이터를 10으로 바꾼다.
+    
+            // console.log(`a is ${a}`);
+            // console.log(`v is ${b}`);
+
+
+            // /*
+            //     object : key(속성) : value(값)
+            //     object는 복잡한 data type. ---> primitive data type이 아니다.
+            //                                ---> reference (참조)
+            //                                ---> 가리키는 공간을 공유한다.
+            // */
+            // const a = {'name':'alice', 'age':20};
+            // const b = a;
+            // const c = {'name':'john', 'age':21};
+            
+            // console.log('befoe  ', a); // const이므로, 다른 object 공간을 가리키는 것은 문제가 되지만,
+            //                            // 가리키는 공간 안의 value를 바꾸는 것은 괜찮다.
+            // b = c; // 즉, 이렇게 가리키는 곳을 바꾸는 건 불가능.
+            //        // 되게 하려면 b가 let이 되어야 한다.
+                                       
+            // b.name = 'tom' // b['name'] 으로 써도 동일.
+            // console.log('after  ', a);
+
+
+            // /*
+            //     array : 복합 타입. ---> primitive data type이 아니다.
+            //                        ---> reference
+            // */
+            //     const a = [1, 2, 3];
+            //     const b = a; // reference
+
+            //     console.log('before  ', a);
+            //     b[1] = 200;
+
+            //     console.log('after  ', a)
+            //     a.forEach((v, idx)=> {
+            //         console.log(`${idx} : ${v}`);
+            //     });
+
+            /*
+                정리)
+                Primitive : Copy. 공간 만들어서 복사.
+                Object, Array, ... : Reference. 하나의 공간 공유.
+            */
+
+                // 복합 타입을 Copy하는 방법
+                // 1. Array
+                const aa = ['alice', 20, {city:'incheon', street:243}];
+                
+                console.log('before-------------------');
+                console.log(aa[0], aa[1], aa[2].city, aa[2].street);
+                
+                // const ba = [...aa] // Shallow Copy. aa 안의 object는 reference된다.
+                
+                const ba = JSON.parse(JSON.stringify(aa)); // Deep Copy
+
+                ba[0] = 'john';
+                ba[1] = 45;
+                ba[2].city = 'seoul';
+                ba[2].street = 555;
+
+                console.log('after-------------------');
+                console.log(aa[0], aa[1], aa[2].city, aa[2].street);
+                console.log(ba[0], ba[1], ba[2].city, ba[2].street);
+
+
+                // // 2. Object
+                // const ao = {name : 'john',
+                //             age : 20,
+                //             address : { // object in object
+                //                 city : 'incheon',
+                //                 street : 243
+                //             }
+                // };
+                // console.log('ao: ', ao.name, ao['age'], ao.address.city, ao.address.street);
+                
+                // // const bo = Object.assign({}, ao); // {} (empty 객체) 에 ao의 모든 속성을 복사.
+                // //                                   // 주의) ao 안의 name, age는 primitive type의 key이므로, copy된다.
+                // //                                   // 하지만, address는 object인 key이므로 reference가 된다.
+                // //                                   //    ---> Shallow Copy
+
+
+                // // JSON ( JavaScript Object Notation)
+                // // Object를 문자열로 뜯어내서 표시하는 방법.
+                // // 네트워크 상에서 통신할 때, 서로 문자열을 주고받으며 object로 변환하면 편하다.
+
+                // // stringify() : object를 JSON Notation의 문자열로 바꾸는 함수.
+                // // parse() : JSON Notation의 문자열을 object로 바꾸는 함수. 
+                // const bo = JSON.parse(JSON.stringify(ao)); // Deep Copy. object key까지 복사.
+
+                // bo.name = 'alice';
+                // bo.address.city = 'seoul';
+
+                // console.log('after----------');
+                // console.log('ao: ', ao.name, ao['age'], ao.address.city, ao.address.street);
+                // console.log('bo: ', bo.name, bo['age'], bo.address.city, bo.address.street);
+
+
+        </script>
+    </body>
+</html>
+

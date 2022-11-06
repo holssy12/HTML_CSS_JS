@@ -1,0 +1,89 @@
+<head>
+    <body>
+        <script>
+
+            // Object, 
+            // ---------> Class : creates object
+
+
+            // // 아래처럼 object를 계속 만드는 것은 비효울적.
+            // const o = {
+            //     name : 'tom',
+            //     age : 20
+            // };
+            
+            // const j = {
+            //     name : 'jane',
+            //     age : 21
+            // };
+
+            // console.log(o);
+            // console.log(j);
+
+
+            // OOP : 생성과 처리를 한꺼번에 해보자.
+
+            // Class
+            'use strict' // 엄격하게 Error를 잡아내도록 한다. ( JavaScript는 원래 관대하기 때문. )
+
+            class Person { // Class는 보통 대문자로 시작한다.
+                constructor(_name, _age) {
+                    this.name = _name; // this.name : object에 만들어질 틀.
+                    this.age = _age;
+                }
+
+                // methods
+                show_info() {
+                    console.log(`${this.name} is ${this.age} yrs old. He(She) lives in ${this.city}`);
+                }
+
+                is_older_than(value) {
+                    if (this.age > value) return true;
+                    else return false;
+                }
+
+                add_city_info(_city) {
+                    this.city = _city; // JS에서는 method에서도 새로운 틀 생성 가능.
+                }
+            }
+
+            // Inheritance ( 상속 ) : JavaScript는 1개의 Parent에게서만 상속 가능.
+            class Student extends Person {  // Person을 받아 Student로 extend한다.
+                                            // Person  : super
+                                            // Student : this
+                constructor(_name, _age, _dream) {
+                    super(_name, _age) // Person의 constructor를 가져온다.
+                    this.dream = _dream
+                }
+
+                show_info() {
+                    super.show_info()
+                    console.log(`His(Her) dream is ${this.dream}`)
+                }
+
+            }
+
+            // // class를 통해 object 만들기
+            // const p = new Person('jim', 20);
+            // p.add_city_info('seoul');
+            // const q = new Person('jane', 21);
+            // q.add_city_info('busan');
+
+            // p.show_info();
+            // console.log(`${p.name} is older than 19?`);
+            // console.log(p.is_older_than(19));
+
+            // q.show_info();
+            // console.log(`${q.name} is older than 19?`);
+            // console.log(q.is_older_than(19));
+
+            const s = new Student('tom', 19, 'pilot')
+            s.add_city_info(`incheon`)
+
+            // Overriding : Parent위에 Child가 올라타있다.
+            //              ---> function 이름이 같으면, child의 method가 위에 올라타있기 때문에 Call된다.
+            s.show_info();
+
+        </script>
+    </body>
+</head>

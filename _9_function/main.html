@@ -1,0 +1,157 @@
+<html>
+    <head>
+    </head>
+    <body>
+        
+        <h1 id='grade'>
+        </h1>
+
+        <script>
+
+            // function parameter ---> 함수 선언
+            // function argument ---> 함수 호출
+
+            // 1.
+            // function sayHello() {
+            //     console.log('안녕하세요.');
+            // }
+
+            // function sayHelloWithParameter(name) {
+            //     console.log(name + '씨, 안녕하세요.');
+            // }
+
+            // 2. arrow function
+            // k라는 변수에 function을 assign한다.
+            // k 자체가 함수 이름처럼 사용된다.
+            // const k = () => { console.log('안녕하세요_2.'); }
+            // const k2 = (name) => { console.log(name + '씨, 안녕하세요_2.'); }
+
+            // 3. 
+            // const v = function() { console.log('안녕하세요_3.'); }
+            // const v2 = function(name) { console.log(name + '씨, 안녕하세요_3.'); }
+
+            // sayHello();
+            // sayHelloWithParameter('찰스');
+            // k();
+            // k2('찰스');
+            // v();
+            // v2('찰스');
+
+//  ----------------------------------------------------------------------------------------------------------------
+
+            // return 값
+            // console.log('sayhello의 반환값: ' + sayHello());    // return : undefined ( C에서의 void )
+
+            // function sayHello_2() {
+            //     console.log('안녕하세요.');
+            //     return '바이!';
+            // }
+
+            // console.log('sayhello_2의 반환값: ' + sayHello_2());  // return : 바이!
+
+            // return 값을 여러개 넘겨줄 때는 array를 이용한다.
+            // function sayHello_3() {
+            //     console.log('안녕하세요.');
+            //     return ['바이!', 10, false];
+            // }
+            
+            // const res = sayHello_3();
+            // console.log('sayhello_3의 반환값: ' + res);
+            // console.log('sayhello_3의 반환값: ' + res[2]);
+
+//  ----------------------------------------------------------------------------------------------------------------
+            
+            // parameters vs. arguments
+
+            // function sayHelloWithParameter(name, age) {
+            //     console.log(age + '살, ' + name + '씨, 안녕하세요.');
+            // }
+
+            // sayHelloWithParameter('찰스', 20, false); // JavaScript는 함수 호출할 때 인자 개수가 초과되면, 알아서 버린다.
+            // sayHelloWithParameter('20'); // 뒤에 나오는 parameter에 20이 argument로 넘어가고, 앞의 parameter는 undefined가 된다.
+
+            // // argumet로 array를 넘길 때
+            // function sayHelloWithParameter(values) {
+            //     console.log(values[1] + '살, ' + values[0] + '씨, 안녕하세요.');
+            // }
+
+            // sayHelloWithParameter(['찰스', 20]); // array의 index와 data type을 살피고 짜야한다.
+            //                                     // JavaScript는 C / C++과 달리 Type Checking이 느슨하다.
+
+//  ----------------------------------------------------------------------------------------------------------------
+                                                
+            // Literal ---> 값 자체
+            // 1, 2, 3  Integar literal
+            // 3.14     Floating point number literal
+            // 'hello'  string literal
+            // Object literal :
+            // const person = [ '찰스' , 20 ]; // ---> array, 배열
+            const person = { name : '찰스', age : 20 }; // object literal
+                                                        // name이라는 attribute의 실제값은 '찰스'
+            // console.log('person name : ' + person.name);    // 방법 1                                                        
+            // console.log('person name : ' + person['name']); // 방법 2
+            
+            // // Object.keys() : Object의 attributes를 array 형태로 보여준다.
+            // console.log('keys of person: ' + Object.keys(person));
+            // // Object.values() : attribute의 실제값을 array 형태로 보여준다.
+            // console.log('values of person: ' + Object.values(person));
+
+            // person.age = 35; // attribute가 바뀌는 이유 ---> 정리 참고
+            // console.log('person age: ' + person.age);
+
+            // const showOL = (ol) => { // arrow function
+            //     const keys = Object.keys(ol); // object literal의 keys를 받아온다.
+            //     // forEach 함수에 parameter 2개를 쓰면, array의 element와 index를 나타낸다.
+            //     // 그후, forEach 함수에 의해 for loop처럼 반복문이 실행된다.
+            //     // parameter 1개만 받게 수정해도 동작한다. ---> 아마 element만으로도 looping 되는 듯?
+            //     keys.forEach( (elem, idx) => { // array 형태인 keys = [name, age]의 요소가 각각 해야할 일을
+            //                                    // arrow function로 만든다.
+            //         console.log( elem + ' ---> ' + ol[elem] ); // 얘는 왜 ol.elem 으로 안될까? --> 아마 string이라 그런 듯?
+            //     } );
+            // };
+
+            // // C Style Code
+            // const showOL_2 = (ol) => {
+            //     const keys = Object.keys(ol);
+            //     for (let i = 0; i < keys.length; i++) {
+            //         console.log(keys[i] + ' ===> ' + ol[keys[i]]);
+            //     }               
+            // };
+            
+            // showOL(person);
+            // showOL_2(person);
+
+//  ----------------------------------------------------------------------------------------------------------------
+
+            // Object literal 활용
+            // function ---> method : 추천되지는 않음. Class를 통해 instance 객체를 사용하는 방법 추천.
+            // method 추가
+            // 주의) Object literal : 값을 만드는 것. Class를 통해 만드는 Object instance와는 다르다!
+            person.sayHello = () => { console.log('Hello! '); };
+            person.sayHello2 = (v) => { console.log( v + '! Hello!' ); };
+            person.areYouOlderThan = (_age) => {
+                if (person.age > _age) return true;   
+                else return false; 
+            };
+
+            person.sayHello();
+            person.sayHello2('찰스');
+
+            const check_age = 30;
+            console.log('Are you older than ' + check_age + '? ' + person.areYouOlderThan(check_age));
+
+            // Object literal in object literal
+            const a = {
+                name: '찰스',
+                detail: {
+                    name: '톰',
+                    age: 10
+                }
+            };
+
+            console.log('---> ' + a.detail.name);
+
+        </script>
+
+    </body>
+</html>
