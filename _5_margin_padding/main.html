@@ -1,31 +1,38 @@
 <html>
-    <head>
-        <style>
-            div#outer {
-                display: inline-block;
-                background-color: crimson;
-                margin: 100px; /* margin : 웹 브라우저의 모든 방향으로 부터 해당 픽셀 만큼 거리를 둔다. (자신의 바깥 division이 없기 때문.)*/
-                border: 10px solid #0000ff; /* border : 경계선 */
-            }
-            div#inner {
-                display: inline-block;
-                background-color: gold;
-                margin: 50px 20px 5px 100px; /* inner의 margin은 outer와의 거리가 기준이다. (가장 가까운 division과의 간격)*/
-                                   /* 숫자 2개 = ( 상하px, 좌우px ) */
-                                   /* 숫자 3개 = ( 상px, 좌우px, 하px ) */ 
-                                   /* 숫자 4개 = ( 상, 우, 하, 좌 ) */
-                padding: 100px; /* padding : 자신을 해당 픽셀만큼 키운다. */ 
-            }
-        </style>
-    </head>
 
-    <body>
-        
-    </body>
+<head>
+    <style>
+        div#outer {
+            display: inline-block;
+            background-color: crimson;
+            margin: 100px;
+            /* margin : 웹 브라우저의 모든 방향으로 부터 해당 픽셀 만큼 거리를 둔다. (자신의 바깥 division이 없기 때문.)*/
+            border: 10px solid #0000ff;
+            /* border : 경계선 */
+        }
 
-    <div id="outer">
-        <div id="inner">
-            HELLO
-        </div>
+        div#inner {
+            display: inline-block;
+            background-color: gold;
+            margin: 50px 20px 5px 100px;
+            /* inner의 margin은 outer와의 거리가 기준이다. (가장 가까운 division과의 간격)*/
+            /* 숫자 2개 = ( 상하px, 좌우px ) */
+            /* 숫자 3개 = ( 상px, 좌우px, 하px ) */
+            /* 숫자 4개 = ( 상, 우, 하, 좌 ) */
+            padding: 100px;
+            /* padding : 자신을 해당 픽셀만큼 키운다. */
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+
+<div id="outer">
+    <div id="inner">
+        HELLO
     </div>
+</div>
+
 </html>

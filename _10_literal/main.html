@@ -1,67 +1,70 @@
 <html>
-    <head>
 
-    </head>
-    <body>
-        <script>
+<head>
 
-            // object literal 비교
-            const a = {name:'찰스', age:20};
-            const b = {name:'로라', age:25};
-            const c = {name:'찰스', age:20};
-            const d = a; // C++의 reference type과 비슷?
-            const e = {name:'찰스', age:20, city:'서울'};
+</head>
 
-            // // if (a === b) console.log('같다');
-            // // else console.log('다르다');
+<body>
+    <script>
 
-            // console.log('a === c : ' + (a === c));  // false
-            // console.log('a === d : ' + (a === d));  // true
+        // object literal 비교
+        const a = { name: '찰스', age: 20 };
+        const b = { name: '로라', age: 25 };
+        const c = { name: '찰스', age: 20 };
+        const d = a; // C++의 reference type과 비슷?
+        const e = { name: '찰스', age: 20, city: '서울' };
 
-            
-            // // object literal 내용 비교
-            // // 1. keys 아는 경우
-            // const cmp_ol = (_x1, _x2) => {
-            //     if((_x1.name === _x2.name) && (_x1.age === _x2.age)) return true;
-            //     else false;
-            // };
+        // // if (a === b) console.log('같다');
+        // // else console.log('다르다');
 
-            // console.log('com_ol(a,c): ' + cmp_ol(a,c));
-            // console.log('com_ol(a,d): ' + cmp_ol(a,d));
-
-            // 2. keys 모르는 경우 ( ol in ol 은 고려하지 않는 경우 )
-            const cmp_ol_2 = (_x1, _x2) => {
-
-                let _x1_keys = Object.keys(_x1);
-                let _x2_keys = Object.keys(_x2);
-                let isEqual = true;
-
-                // key 개수가 다르면 false return하고 종료
-                if ( _x1_keys.length !== _x2_keys.length ) return false;
-
-                _x1_keys = _x1_keys.sort();
-                _x2_keys = _x2_keys.sort();
-
-                // 주의) forEach도 함수. ---> 즉, return 존재.
-                //       forEach 내부의 return은 cmp_ol_2의 return에 영향 X.
-                //       그래서 flag 역할을 하는 변수 isEqual 사용.
-                _x1_keys.forEach( (elem, idx) => {
-                    
-                    // key의 이름이 같은지 비교
-                    if(_x1_keys[idx] !== _x2_keys[idx]) isEqual = false;
-                    // 각각의 object literal 속 key의 실제값이 같은지 비교
-                    if(_x1[_x1_keys[idx]] !== _x2[_x2_keys[idx]]) isEqual = false;
-                    
-                });
-
-                return isEqual;
-            };
-
-            console.log('com_ol(a,c): ' + cmp_ol_2(a,c));
-            console.log('com_ol(a,b): ' + cmp_ol_2(a,b));
-            console.log('com_ol(a,e): ' + cmp_ol_2(a,e));
+        // console.log('a === c : ' + (a === c));  // false
+        // console.log('a === d : ' + (a === d));  // true
 
 
-        </script>
-    </body>
+        // // object literal 내용 비교
+        // // 1. keys 아는 경우
+        // const cmp_ol = (_x1, _x2) => {
+        //     if((_x1.name === _x2.name) && (_x1.age === _x2.age)) return true;
+        //     else false;
+        // };
+
+        // console.log('com_ol(a,c): ' + cmp_ol(a,c));
+        // console.log('com_ol(a,d): ' + cmp_ol(a,d));
+
+        // 2. keys 모르는 경우 ( ol in ol 은 고려하지 않는 경우 )
+        const cmp_ol_2 = (_x1, _x2) => {
+
+            let _x1_keys = Object.keys(_x1);
+            let _x2_keys = Object.keys(_x2);
+            let isEqual = true;
+
+            // key 개수가 다르면 false return하고 종료
+            if (_x1_keys.length !== _x2_keys.length) return false;
+
+            _x1_keys = _x1_keys.sort();
+            _x2_keys = _x2_keys.sort();
+
+            // 주의) forEach도 함수. ---> 즉, return 존재.
+            //       forEach 내부의 return은 cmp_ol_2의 return에 영향 X.
+            //       그래서 flag 역할을 하는 변수 isEqual 사용.
+            _x1_keys.forEach((elem, idx) => {
+
+                // key의 이름이 같은지 비교
+                if (_x1_keys[idx] !== _x2_keys[idx]) isEqual = false;
+                // 각각의 object literal 속 key의 실제값이 같은지 비교
+                if (_x1[_x1_keys[idx]] !== _x2[_x2_keys[idx]]) isEqual = false;
+
+            });
+
+            return isEqual;
+        };
+
+        console.log('com_ol(a,c): ' + cmp_ol_2(a, c));
+        console.log('com_ol(a,b): ' + cmp_ol_2(a, b));
+        console.log('com_ol(a,e): ' + cmp_ol_2(a, e));
+
+
+    </script>
+</body>
+
 </html>

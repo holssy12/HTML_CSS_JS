@@ -48,7 +48,9 @@ Reference (참조)
             //                        ---> reference
             // */
             //     const a = [1, 2, 3];
-            //     const b = a; // reference
+            //     const b = a;         // reference
+            //     const c = [...a];    // shallow copy
+            //     console.log(`c is ${c}`);
 
             //     console.log('before  ', a);
             //     b[1] = 200;
@@ -101,7 +103,7 @@ Reference (참조)
                 // //                                   //    ---> Shallow Copy
 
 
-                // // JSON ( JavaScript Object Notation)
+                // // JSON ( JavaScript Object Notation )
                 // // Object를 문자열로 뜯어내서 표시하는 방법.
                 // // 네트워크 상에서 통신할 때, 서로 문자열을 주고받으며 object로 변환하면 편하다.
 

@@ -79,12 +79,12 @@
 
 //     // resolve : 다 끝나면 호출해야 하는 함수.
 //     // reject : 실패 시 부르는 함수.
-    
+
 //     setTimeout(()=>{
 //     resolve('ended') // ended 라는 문자열을 주었다. ( 필요에 따라 다양하게 줄 수 있음. )
 
 //     }, 3000) // 3초 후 실행
-    
+
 //     // resolve('ended') // ended 라는 문자열을 주었다. ( 필요에 따라 다양하게 줄 수 있음. )
 
 // })
@@ -110,22 +110,22 @@
 // 404란? ---> 서버가 응답은 했는데, 해당 웹 주소가 없다.
 
 // fetch : 서버로부터 web page를 가져오다.
-//  fet가 알아서 resolve, reject까지 처리해준다.
+//  fetch가 알아서 resolve, reject까지 처리해준다.
 // a는 promise
 fetch('http://127.0.0.1:5500/_1_hello_world/hello.html') // 반환값이 promise
 
-.then ((response) => { // fetch가 성공하여 서버로부터 응답이 제대로 왔을 때 실행
-    console.log(`서버응답 도착`)
-    return response.text() // 주의) 반환값이 문자열이 아님!!! 또다른 promise를 반환한다.
-})
-.then((data)=>{ // response.text()가 준 promise가 성사됐을 경우
-                // resolve로 문자열을 넘겨준다.
-    console.log(`문자열로 바꾼 응답: ${data}`)
+    .then((response) => { // fetch가 성공하여 서버로부터 응답이 제대로 왔을 때 실행
+        console.log(`서버응답 도착`)
+        return response.text() // 주의) 반환값이 문자열이 아님!!! 또다른 promise를 반환한다.
+    })
+    .then((data) => { // response.text()가 준 promise가 성사됐을 경우
+        // resolve로 문자열을 넘겨준다.
+        console.log(`문자열로 바꾼 응답: ${data}`)
 
-})
-.catch((err)=>{ // catch : reject가 오면 실행
-    console.log(`서버응답 에러: ${err}`)
-})
+    })
+    .catch((err) => { // catch : reject가 오면 실행
+        console.log(`서버응답 에러: ${err}`)
+    })
 
 // 비동기 요청과 상관없는 부분이 별도로 실행되는지 확인
 for (let i = 0; i < 10; i++) {
